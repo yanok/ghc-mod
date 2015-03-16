@@ -52,6 +52,10 @@ argspec :: [OptDescr (Options -> Options)]
 argspec = [ Option "b" ["boundary"]
             (ReqArg (\s opts -> opts { lineSeparator = LineSeparator s }) "sep")
             "specify line separator (default is Nul string)"
+          , Option "s" []
+            (NoArg $ \o -> o { logLevel = decreaseLogLevel (logLevel o) })
+            "Can be given multiple times to be increasingly be less verbose."
+
           , Option "l" ["tolisp"]
             (NoArg (\opts -> opts { outputStyle = LispStyle }))
             "print as a list of Lisp"
