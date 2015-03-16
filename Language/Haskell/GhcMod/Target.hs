@@ -144,7 +144,7 @@ runGmlTWith efnmns' mdf wrapper action = do
         serfnmn = Set.fromList $ map Right mns ++ map Left rfns
 
     opts <- targetGhcOptions crdl serfnmn
-    let opts' = opts ++ ghcUserOptions
+    let opts' = opts ++ ["-O0"] ++ ghcUserOptions
 
     initSession opts' $
         setModeSimple >>> setEmptyLogger >>> mdf
